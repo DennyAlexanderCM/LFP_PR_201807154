@@ -107,4 +107,53 @@ def analizarDatos(data):
     print(productsList)
 
 def analizarInstrucciones(data):
-    pass
+    addDates = True
+    instrucciones = {}
+    estado = 0
+    estadoNombre = False
+
+    init = data[0]+data[1]
+    end = data[len(data)-2]+data[len(data)-1]
+    if init == "<¿" and end == "?>":
+        aux = ""
+        auxDate = ""
+        #tomamos los datos solo dentro de los signos
+        data = data[2:-2]
+        data += "#"
+        for caracter in data:
+            if caracter == ":":
+                addDates = False
+            elif addDates == True:
+                aux += caracter
+            elif caracter == '\"':
+                estado+=1
+            elif estado == 1:
+                auxDate += caracter
+            elif (estado == 2 and caracter == ",") or caracter == "#":
+                if aux == "nombre":
+                    instrucciones[aux] = auxDate
+                elif aux == "grafica":
+                    instrucciones[aux] = auxDate
+                elif aux == "titulo":
+                    instrucciones[aux] = auxDate
+                elif aux == "titulox":
+                    instrucciones[aux] = auxDate
+                elif aux == "tituloy":
+                    instrucciones[aux] = auxDate
+                else:
+                    print(aux)
+                    print("No se reconoce este comando", aux)
+                aux = ""
+                auxDate = ""
+                estado = 0
+                addDates = True
+            else:
+                print("Archivo con formato incorrecto")
+
+        if 'nombre' in instrucciones and 'grafica' in instrucciones:
+            print(instrucciones)
+        else:
+            print("No se guardaron cambios, datos insuficientes")
+        
+    else:
+        print("Archivo con formato incorrecto")
