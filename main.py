@@ -1,10 +1,13 @@
 from app import *
-
+from analizador import Analizador
+from graficas import Graficas
 def run():
     txtData = ""
     txtInstrucciones = ""
     end = False
     selection = 0
+    a = Analizador()
+    b = Graficas()
     
     while not end:
 
@@ -12,26 +15,24 @@ def run():
         selection = pedirNumeroEntero()
 
         if selection == 1:
-
             txtData = leerArchivo(".data")
             if txtData != None:
-                print("Datos cargados...\n")
+                a.analizarDatosVentas(txtData)
             else:
-                print("sin Cambios")
-
+                print("Sin cambios\n")
+        
         elif selection == 2:
             txtInstrucciones = leerArchivo(".lfp")
             if txtInstrucciones != None:
-                print("Datos cargados...\n")
-                print(txtInstrucciones)
+                a.analizarDatosIstrucciones(txtInstrucciones)
             else:
-                print("sin Cambios")
+                print("Sin cambios\n")
 
         elif selection == 3:
-            analizarDatos(txtData)
-
+            c = analizarProductos(a.getDataList())
+            b.generarGrafica(c, a.getDataLlistInstructions())
         elif selection == 4:
-            crearGraficaSectores()
+            pass
 
         elif selection == 5:
             print("Finalizando programa...")
