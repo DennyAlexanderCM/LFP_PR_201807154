@@ -24,7 +24,6 @@ class Analizador():
 
         #comillas 
         state = 0
-
         #Others
         aux = ""
 
@@ -50,7 +49,7 @@ class Analizador():
                 addProducts = True
             #indicamos la ficalizacion de lectura de datos
             elif caracter == ")" and estadoAnio and estadoMes:
-                    self.mes = nombreMes
+                    self.mes = nombreMes.upper()
                     self.anio = anio
                     self.dataList["productos"] = productsList
                     print("Archivo leído correctamente\n")
@@ -65,14 +64,21 @@ class Analizador():
                     state += 1
                 elif caracter == ";" and addProductA == True and addProductB == True and state ==2:
                     lista = aux.split(",")
-                    lista[1] = float(lista[1])
-                    lista[2] = int(lista[2])
-                    a = Producto(lista[0],lista[1],lista[2])
-                    productsList.append(a)
+                    if len(lista) == 3:
+                        lista[1] = float(lista[1])
+                        lista[2] = int(lista[2])
+                        a = Producto(lista[0],lista[1],lista[2])
+                        productsList.append(a)
+                    else:
+                        print("El archivo contiene errores")
+                        break
                     addProductA = False
                     addProductB = False
                     state = 0
                     aux = ""
+                elif state >2 :
+                    print("El archivo contiene errores")
+                    break
                 else:
                     aux += caracter
                 
@@ -108,11 +114,11 @@ class Analizador():
                     elif aux == "grafica":
                         instrucciones[aux] = auxDate
                     elif aux == "titulo":
-                        instrucciones[aux] = auxDate
+                        instrucciones[aux] = auxDate.upper()
                     elif aux == "titulox":
-                        instrucciones[aux] = auxDate
+                        instrucciones[aux] = auxDate.upper()
                     elif aux == "tituloy":
-                        instrucciones[aux] = auxDate
+                        instrucciones[aux] = auxDate.upper()
                     else:
                         print(aux)
                         print("No se reconoce este comando", aux)

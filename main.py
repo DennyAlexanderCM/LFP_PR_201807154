@@ -10,7 +10,6 @@ def run():
     b = Graficas()
     
     while not end:
-
         print("------------Menú------------\n1. Cargar Data\n2. Cargar Instrucciones\n3. Análizar\n4. Reportes\n5. Salir")
         selection = pedirNumeroEntero()
 
@@ -29,10 +28,15 @@ def run():
                 print("Sin cambios\n")
 
         elif selection == 3:
-            c = analizarProductos(a.getDataList())
-            b.generarGrafica(c, a.getDataLlistInstructions())
+            #Obtenemos unu diccionario con listas de los nombres de los productos así como de las ganancias
+            diccionarioDatosVentas = analizarProductos(a.getDataList())
+            mesAnio = [a.getMes(), a.getAnio()]
+            diccionarioInstrucciones = a.getDataLlistInstructions()
+            b.generarGrafica(diccionarioDatosVentas,diccionarioInstrucciones, mesAnio)
         elif selection == 4:
-            pass
+            aux = a.getDataList()
+            mesAnio = [a.getMes(), a.getAnio()]
+            generarReporte(aux['productos'],mesAnio)
 
         elif selection == 5:
             print("Finalizando programa...")
