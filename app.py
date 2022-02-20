@@ -7,7 +7,7 @@ def pedirNumeroEntero():
     num=0
     while(not correcto):
         try:
-            num = int(input("Introduce un numero entero: "))
+            num = int(input(">Introduce una Opción: "))
             correcto=True
         except ValueError:
             print('Error, introduce un numero entero')
@@ -120,7 +120,7 @@ def generarReporte(dataProducts,mesAnio):
                                 margin-top: 4rem;
                             }
                         </style>
-                        <title>Document</title>
+                        <title>Reporte del mes</title>
                     </head>
 
                     <body>
@@ -216,3 +216,5 @@ def generarReporte(dataProducts,mesAnio):
                     </html>""")
     archi1.close()
     webbrowser.open_new_tab(nombreArchivo)
+
+    print("Reporte creado correctamente...")

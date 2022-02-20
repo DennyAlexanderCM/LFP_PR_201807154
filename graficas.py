@@ -45,7 +45,7 @@ class Graficas():
         if 'tituloy' in dataInstructions:
             plt.ylabel(dataInstructions['tituloy'], fontdict = {'fontsize':12, 'fontweight':'bold'})
         #Para que guarde todos los cambios
-        plt.savefig(dataInstructions['nombre']+'.png')
+        plt.savefig(dataInstructions['nombre']+'.png')  
         plt.show()
 
     def crearGraficaLineal(self, data, dataInstructions, mesAnio):
@@ -79,5 +79,5 @@ class Graficas():
         if  'titulo' in dataInstructions:
             plt.title(dataInstructions['titulo'], fontdict = {'fontsize':14, 'fontweight':'bold'})
         else: plt.title(mesAnio[0] + " - " + mesAnio[1], fontdict = {'fontsize':14, 'fontweight':'bold'})
-        plt.savefig(dataInstructions['nombre']+'.png')
+        plt.savefig(dataInstructions['nombre']+'.png')  
         plt.show() 

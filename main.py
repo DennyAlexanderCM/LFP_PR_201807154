@@ -10,7 +10,7 @@ def run():
     b = Graficas()
     
     while not end:
-        print("------------Menú------------\n1. Cargar Data\n2. Cargar Instrucciones\n3. Análizar\n4. Reportes\n5. Salir")
+        print("\n=========== Menú ===========\n1. Cargar Data\n2. Cargar Instrucciones\n3. Análizar\n4. Reportes\n5. Salir")
         selection = pedirNumeroEntero()
 
         if selection == 1:
